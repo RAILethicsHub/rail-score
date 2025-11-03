@@ -4,7 +4,7 @@
 
 [![PyPI version](https://badge.fury.io/py/rail-score.svg)](https://badge.fury.io/py/rail-score)
 [![Python Versions](https://img.shields.io/pypi/pyversions/rail-score.svg)](https://pypi.org/project/rail-score/)
-[![Downloads](https://pepy.tech/badge/rail-score)](https://pepy.tech/project/rail-score)
+[![PyPI Downloads](https://static.pepy.tech/personalized-badge/rail-score-sdk?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/rail-score-sdk)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
