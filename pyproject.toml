@@ -4,28 +4,73 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rail-score"
-version = "1.0.1"
-description = "Official Python SDK for RAIL Score API - Responsible AI evaluation and generation"
+version = "0.1.0"
+description = "Official Python SDK for RAIL Score API - Evaluate and generate responsible AI content"
 readme = "README.md"
 requires-python = ">=3.8"
 license = {text = "MIT"}
 authors = [
     {name = "Responsible AI Labs", email = "support@responsibleailabs.ai"}
 ]
-keywords = ["rail", "responsible-ai", "ai-safety", "content-evaluation", "ai-ethics", "compliance"]
+maintainers = [
+    {name = "Responsible AI Labs", email = "support@responsibleailabs.ai"}
+]
+keywords = [
+    "responsible-ai",
+    "rail-score",
+    "ai-evaluation",
+    "ai-safety",
+    "compliance",
+    "gdpr",
+    "hipaa",
+    "ccpa",
+    "eu-ai-act",
+    "ai-ethics",
+    "content-moderation",
+    "rag-evaluation",
+    "hallucination-detection",
+    "ai-governance",
+    "trustworthy-ai",
+    "fairness",
+    "transparency",
+    "accountability",
+    "privacy",
+    "ai-assessment",
+]
+
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
+    # Development Status
+    "Development Status :: 4 - Beta",
+    
+    # Intended Audience
     "Intended Audience :: Developers",
-    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Information Technology",
+    
+    # Topic
     "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Security",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    
+    # License
     "License :: OSI Approved :: MIT License",
+    
+    # Programming Language
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    
+    # Operating System
+    "Operating System :: OS Independent",
+    
+    # Typing
+    "Typing :: Typed",
 ]
+
 dependencies = [
     "requests>=2.28.0",
 ]
@@ -33,23 +78,109 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
     "black>=22.0.0",
     "mypy>=0.990",
+    "isort>=5.11.0",
     "flake8>=5.0.0",
+    "types-requests>=2.28.0",
+]
+
+docs = [
+    "sphinx>=5.0.0",
+    "sphinx-rtd-theme>=1.0.0",
+    "sphinx-autodoc-typehints>=1.19.0",
+]
+
+all = [
+    "rail-score[dev,docs]",
 ]
 
 [project.urls]
 Homepage = "https://responsibleailabs.ai"
-Documentation = "https://docs.responsibleailabs.ai"
+Documentation = "https://responsibleailabs.ai/docs"
 Repository = "https://github.com/Responsible-AI-Labs/rail-score"
 "Bug Tracker" = "https://github.com/Responsible-AI-Labs/rail-score/issues"
+"Source Code" = "https://github.com/Responsible-AI-Labs/rail-score"
+Changelog = "https://github.com/Responsible-AI-Labs/rail-score/blob/main/CHANGELOG.md"
+"API Reference" = "https://responsibleailabs.ai/docs/api"
+
+[tool.setuptools]
+packages = ["rail_score"]
+
+[tool.setuptools.package-data]
+rail_score = ["py.typed"]
 
 [tool.black]
 line-length = 100
 target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
 
 [tool.mypy]
 python_version = "3.8"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = false
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+follow_imports = "normal"
+ignore_missing_imports = true
+strict_equality = true
+strict_optional = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --strict-markers --cov=rail_score --cov-report=term-missing --cov-report=html"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.coverage.run]
+source = ["rail_score"]
+omit = [
+    "*/tests/*",
+    "*/test_*.py",
+    "*/__pycache__/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if __name__ == .__main__.:",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if False:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]

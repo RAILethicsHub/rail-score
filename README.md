@@ -1,28 +1,45 @@
 # RAIL Score Python SDK
 
-Official Python client for the [RAIL Score API](https://responsibleailabs.ai) - Evaluate and generate responsible AI content.
+<div align="center">
 
-[![PyPI version](https://badge.fury.io/py/rail-score.svg)](https://pypi.org/project/rail-score/)
+[![PyPI version](https://badge.fury.io/py/rail-score.svg)](https://badge.fury.io/py/rail-score)
 [![Python Versions](https://img.shields.io/pypi/pyversions/rail-score.svg)](https://pypi.org/project/rail-score/)
+[![Downloads](https://pepy.tech/badge/rail-score)](https://pepy.tech/project/rail-score)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-## Features
+**Evaluate and generate responsible AI content with the official Python client for [RAIL Score API](https://responsibleailabs.ai)**
 
-- ✅ **Evaluation API** - Score content across 8 RAIL dimensions
-- ✅ **Generation API** - Generate safe, responsible AI content
-- ✅ **Compliance API** - Check against GDPR, HIPAA, CCPA, EU AI Act
-- ✅ **Batch Processing** - Evaluate up to 100 items per request
-- ✅ **Type Hints** - Full typing support for better IDE experience
-- ✅ **Automatic Retries** - Built-in error handling
-- ✅ **Response Models** - Structured dataclasses for clean API responses
+[Documentation](https://responsibleailabs.ai/docs) • [API Reference](https://responsibleailabs.ai/docs/api) • [Examples](#examples) • [Report Issues](https://github.com/Responsible-AI-Labs/rail-score/issues)
 
-## Installation
+</div>
+
+---
+
+## 🌟 Features at a Glance
+
+| Feature | Description |
+|---------|-------------|
+| **🎯 8 RAIL Dimensions** | Evaluate content across Reliability, Accountability, Interpretability, Legal Compliance, Safety, Privacy, Transparency, and Fairness |
+| **⚡ Multiple Evaluation Tiers** | Choose from basic, dimension-specific, custom, weighted, detailed, advanced, and batch evaluation |
+| **🤖 AI Generation** | Generate RAG-grounded responses, reprompt suggestions, and protected content |
+| **✅ Compliance Checks** | Built-in support for GDPR, HIPAA, CCPA, and EU AI Act compliance |
+| **📊 Batch Processing** | Evaluate up to 100 items per request efficiently |
+| **🔒 Type-Safe** | Full typing support with structured dataclasses for better IDE experience |
+| **🔄 Auto-Retry** | Built-in error handling and automatic retries |
+| **📈 Usage Tracking** | Monitor credits, usage history, and API health |
+
+---
+
+## 🚀 Quick Start
+
+### Installation
 
 ```bash
 pip install rail-score
 ```
 
-## Quick Start
+### Basic Usage
 
 ```python
 from rail_score import RailScore
@@ -40,9 +57,38 @@ print(f"Privacy Score: {result.scores['privacy'].score}")
 print(f"Credits Used: {result.metadata.credits_consumed}")
 ```
 
-## API Reference
+---
 
-### Initialization
+## 📖 Table of Contents
+
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Evaluation API](#evaluation-api)
+  - [Basic Evaluation](#basic-evaluation)
+  - [Dimension-Specific Evaluation](#dimension-specific-evaluation)
+  - [Custom Evaluation](#custom-evaluation)
+  - [Weighted Evaluation](#weighted-evaluation)
+  - [Detailed Evaluation](#detailed-evaluation)
+  - [Advanced Evaluation](#advanced-evaluation)
+  - [Batch Evaluation](#batch-evaluation)
+  - [RAG Evaluation](#rag-evaluation)
+- [Generation API](#generation-api)
+  - [RAG Chat](#rag-chat)
+  - [Reprompting](#reprompting)
+  - [Protected Generation](#protected-generation)
+- [Compliance API](#compliance-api)
+- [Utilities](#utilities)
+- [Error Handling](#error-handling)
+- [Response Structure](#response-structure)
+- [Use Cases](#use-cases)
+- [Development](#development)
+- [Contributing](#contributing)
+- [License](#license)
+- [Support](#support)
+
+---
+
+## 🔧 Configuration
 
 ```python
 from rail_score import RailScore
@@ -54,9 +100,11 @@ client = RailScore(
 )
 ```
 
+**Getting an API Key**: Visit [responsibleailabs.ai](https://responsibleailabs.ai) to sign up and get your API key.
+
 ---
 
-## Evaluation API
+## 📊 Evaluation API
 
 ### Basic Evaluation
 
@@ -85,7 +133,7 @@ print(f"Credits Used: {result.metadata.credits_consumed}")
 print(f"Processing Time: {result.metadata.processing_time_ms}ms")
 ```
 
-### Single Dimension
+### Dimension-Specific Evaluation
 
 Evaluate on one specific dimension only:
 
@@ -93,14 +141,14 @@ Evaluate on one specific dimension only:
 result = client.evaluation.dimension(
     content="We collect user data with consent",
     dimension="privacy"  # One of: reliability, accountability, interpretability,
-                        # legal_compliance, safety, privacy, transparency, fairness
+                         # legal_compliance, safety, privacy, transparency, fairness
 )
 
 print(result['result']['score'])
 print(result['result']['explanation'])
 ```
 
-### Custom Dimensions
+### Custom Evaluation
 
 Evaluate only specific dimensions:
 
@@ -147,7 +195,7 @@ print(f"Weaknesses: {summary['weaknesses']}")
 print(f"Improvements needed: {summary['improvements_needed']}")
 ```
 
-### Advanced Evaluation (Pro+ Plans)
+### Advanced Evaluation
 
 Ensemble evaluation with higher confidence:
 
@@ -160,7 +208,7 @@ result = client.evaluation.advanced(
 print(result.rail_score.confidence)  # Typically 0.90+
 ```
 
-### Batch Processing (Pro+ Plans)
+### Batch Evaluation
 
 Evaluate multiple items in one request:
 
@@ -178,11 +226,12 @@ result = client.evaluation.batch(
 )
 
 print(f"Processed: {result.successful}/{result.total_items}")
+
 for item_result in result.results:
     print(f"Score: {item_result.rail_score.score}")
 ```
 
-### RAG Quality Evaluation (Pro+ Plans)
+### RAG Evaluation
 
 Evaluate RAG responses for hallucinations:
 
@@ -204,7 +253,7 @@ print(f"Overall Quality: {metrics['overall_quality']}")
 
 ---
 
-## Generation API
+## 🤖 Generation API
 
 ### RAG Chat
 
@@ -223,7 +272,7 @@ print(f"Tokens used: {result.usage['total_tokens']}")
 print(f"Credits: {result.metadata.credits_consumed}")
 ```
 
-### Content Reprompting
+### Reprompting
 
 Get improvement suggestions:
 
@@ -263,7 +312,7 @@ print(f"Safety Passed: {result.safety_passed}")
 
 ---
 
-## Compliance API
+## ✅ Compliance API
 
 ### GDPR Compliance
 
@@ -283,7 +332,7 @@ for req in result.requirements:
         print(f"  Issue: {req.issue}")
 ```
 
-### Other Compliance Frameworks
+### Other Compliance Checks
 
 ```python
 # CCPA
@@ -298,9 +347,9 @@ result = client.compliance.ai_act("AI system description")
 
 ---
 
-## Utility Methods
+## 🛠️ Utilities
 
-### Get Credit Balance
+### Check Credits
 
 ```python
 credits = client.get_credits()
@@ -327,13 +376,14 @@ for entry in usage['history']:
 
 ```python
 health = client.health_check()
+
 print(f"Status: {health['ok']}")
 print(f"Version: {health['version']}")
 ```
 
 ---
 
-## Error Handling
+## ⚠️ Error Handling
 
 ```python
 from rail_score import (
@@ -363,37 +413,36 @@ except PlanUpgradeRequired:
 
 ---
 
-## Response Structure
+## 📦 Response Structure
 
 All endpoints return responses with this structure:
 
-```python
+```json
 {
-    "result": {
-        # Actual results from RAIL Score engine
-        "rail_score": {"score": 8.7, "confidence": 0.90},
-        "scores": {
-            "privacy": {"score": 9.1, "confidence": 0.94, "explanation": "..."},
-            ...
-        },
-        "processing_time": 2.5
+  "result": {
+    "rail_score": {"score": 8.7, "confidence": 0.90},
+    "scores": {
+      "privacy": {"score": 9.1, "confidence": 0.94, "explanation": "..."},
+      ...
     },
-    "metadata": {
-        "req_id": "abc-123",              # Request ID for tracking
-        "tier": "pro",                    # Your plan tier
-        "queue_wait_time_ms": 1200.0,     # Time in queue
-        "processing_time_ms": 2500.0,     # Processing time
-        "credits_consumed": 2.0,          # Actual credits charged
-        "timestamp": "2025-11-03T10:30:00Z"
-    }
+    "processing_time": 2.5
+  },
+  "metadata": {
+    "req_id": "abc-123",
+    "tier": "pro",
+    "queue_wait_time_ms": 1200.0,
+    "processing_time_ms": 2500.0,
+    "credits_consumed": 2.0,
+    "timestamp": "2025-11-03T10:30:00Z"
+  }
 }
 ```
 
 ---
 
-## Examples
+## 💡 Use Cases
 
-### Example 1: Content Moderation
+### Content Moderation
 
 ```python
 from rail_score import RailScore
@@ -411,7 +460,7 @@ if result['result']['score'] < 7.0:
     print(f"Issues: {result['result']['issues']}")
 ```
 
-### Example 2: Batch Content Screening
+### Batch Content Evaluation
 
 ```python
 # Evaluate multiple pieces of content
@@ -430,7 +479,7 @@ safe_content = [
 ]
 ```
 
-### Example 3: Compliance Checking
+### Compliance Checking
 
 ```python
 # Check GDPR compliance
@@ -448,19 +497,19 @@ if result.failed > 0:
 
 ---
 
-## Requirements
+## 🔨 Development
+
+### Requirements
 
 - Python 3.8+
 - requests >= 2.28.0
 
----
-
-## Development
+### Setup
 
 ```bash
 # Clone repository
-git clone https://github.com/responsibleailabs/rail-score-sdk-python.git
-cd rail-score-sdk-python
+git clone https://github.com/Responsible-AI-Labs/rail-score.git
+cd rail-score
 
 # Install in development mode
 pip install -e ".[dev]"
@@ -477,28 +526,53 @@ mypy rail_score/
 
 ---
 
-## License
+## 🤝 Contributing
 
-MIT License - see [LICENSE](LICENSE) file for details.
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
 
----
+### Quick Links
 
-## Support
-
-- **Documentation**: https://responsibleailabs.ai/docs
-- **Issues**: https://github.com/Responsible-AI-Labs/rail-score/issues
-- **Email**: support@responsibleailabs.ai
+- 🐛 [Report a Bug](https://github.com/Responsible-AI-Labs/rail-score/issues/new?labels=bug)
+- 💡 [Request a Feature](https://github.com/Responsible-AI-Labs/rail-score/issues/new?labels=enhancement)
+- 📖 [Improve Documentation](https://github.com/Responsible-AI-Labs/rail-score/issues/new?labels=documentation)
 
 ---
 
-## Changelog
+## 📄 License
 
-### 1.0.0 (2025-11)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Initial release with support for:
-- All evaluation endpoints (basic, dimension, custom, weighted, detailed, advanced, batch, rag)
-- All generation endpoints (rag_chat, reprompt, protected_generate)
-- All compliance endpoints (GDPR, CCPA, HIPAA, EU AI Act)
-- Utility methods (usage, credits, health)
-- Structured response models with metadata
-- Comprehensive error handling
+---
+
+## 📞 Support
+
+- **Documentation**: [https://responsibleailabs.ai/docs](https://responsibleailabs.ai/docs)
+- **Issues**: [https://github.com/Responsible-AI-Labs/rail-score/issues](https://github.com/Responsible-AI-Labs/rail-score/issues)
+- **Email**: [support@responsibleailabs.ai](mailto:support@responsibleailabs.ai)
+- **Website**: [https://responsibleailabs.ai](https://responsibleailabs.ai)
+
+---
+
+## 🌐 Related Resources
+
+- [RAIL Score API Documentation](https://responsibleailabs.ai/docs)
+- [Research Paper: RAIL in the Wild](https://arxiv.org/abs/2505.00204)
+- [Responsible AI Labs Website](https://responsibleailabs.ai)
+
+---
+
+## ⭐ Star History
+
+If you find RAIL Score useful, please consider giving it a star! ⭐
+
+[![Star History Chart](https://api.star-history.com/svg?repos=Responsible-AI-Labs/rail-score&type=Date)](https://star-history.com/#Responsible-AI-Labs/rail-score&Date)
+
+---
+
+<div align="center">
+
+**Made with ❤️ by [Responsible AI Labs](https://responsibleailabs.ai)**
+
+[Website](https://responsibleailabs.ai) • [Documentation](https://responsibleailabs.ai/docs) • [GitHub](https://github.com/Responsible-AI-Labs) • [Twitter](https://twitter.com/ResponsibleAIL)
+
+</div>
