@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "rail-score"
-version = "0.1.0"
+version = "1.0.1"
 description = "Official Python SDK for RAIL Score API - Evaluate and generate responsible AI content"
 readme = "README.md"
 requires-python = ">=3.8"

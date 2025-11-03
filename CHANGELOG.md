@@ -15,9 +15,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ---
 
-## [1.0.0] - 2025-11-03
+## [1.0.1] - 2025-11-04
+
+### Changed
+- Enhanced README with badges and better structure
+- Improved PyPI package metadata and keywords
+- Updated documentation with comprehensive guides
 
 ### Added
+- Complete installation guide with platform-specific instructions
+- Quick start tutorial with step-by-step examples
+- Comprehensive API reference documentation
+- Real-world examples and use cases
+- Interactive Jupyter notebooks
+
+### Fixed
+- Minor documentation formatting improvements
+
+---
+
+## [1.0.0] - 2025-11-04
+
+### Initial Stable Release
+
+This is the first stable release of the RAIL Score Python SDK, providing production-ready tools for evaluating and generating responsible AI content.
 
 #### Evaluation API
 - **Basic Evaluation**: Comprehensive evaluation across all 8 RAIL dimensions
@@ -55,11 +76,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `PlanUpgradeRequired`
 - Automatic retry logic with exponential backoff
 - Detailed metadata in all responses (request ID, credits consumed, processing time)
-- Support for Python 3.8+
+- Support for Python 3.8, 3.9, 3.10, 3.11, 3.12
 
 #### Documentation
 - Complete README with usage examples
-- API reference documentation
+- Comprehensive API reference documentation
+- Installation guide with platform-specific instructions
+- Quick start guide
+- Real-world examples and use cases
+- Jupyter notebooks for interactive learning
 - Type hints for IDE autocomplete support
 
 ### Technical Details
@@ -84,7 +109,7 @@ When releasing a new version, move items from `[Unreleased]` to a new version se
 ### Example Entry
 
 ```markdown
-## [0.2.0] - 2025-XX-XX
+## [1.1.0] - 2025-XX-XX
 
 ### Added
 - New feature X
@@ -101,5 +126,6 @@ When releasing a new version, move items from `[Unreleased]` to a new version se
 
 ---
 
-[Unreleased]: https://github.com/Responsible-AI-Labs/rail-score/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/Responsible-AI-Labs/rail-score/releases/tag/v0.1.0
+[Unreleased]: https://github.com/Responsible-AI-Labs/rail-score/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/Responsible-AI-Labs/rail-score/compare/v1.0.0...v1.0.1
+[1.0.0]: https://github.com/Responsible-AI-Labs/rail-score/releases/tag/v1.0.0
